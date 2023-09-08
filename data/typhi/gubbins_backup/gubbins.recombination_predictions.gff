@@ -1,0 +1,23 @@
+##gff-version 3
+##sequence-region SEQUENCE 1 4809037
+SEQUENCE	GUBBINS	CDS	4480586	4480628	0.000	.	0	node="Node_1->ERR5243695";neg_log_likelihood="483.010993";taxa="ERR5243695";snp_count="7";
+SEQUENCE	GUBBINS	CDS	2822901	2822966	0.000	.	0	node="Node_1->ERR5243695";neg_log_likelihood="459.033027";taxa="ERR5243695";snp_count="5";
+SEQUENCE	GUBBINS	CDS	3541072	3541113	0.000	.	0	node="Node_1->ERR5243695";neg_log_likelihood="441.930794";taxa="ERR5243695";snp_count="3";
+SEQUENCE	GUBBINS	CDS	3058259	3059943	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1394.096534";taxa="ERR5243693";snp_count="44";
+SEQUENCE	GUBBINS	CDS	4480586	4480617	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1306.685313";taxa="ERR5243693";snp_count="6";
+SEQUENCE	GUBBINS	CDS	1031909	1032468	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1284.148577";taxa="ERR5243693";snp_count="7";
+SEQUENCE	GUBBINS	CDS	4494619	4494682	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1257.620554";taxa="ERR5243693";snp_count="5";
+SEQUENCE	GUBBINS	CDS	2372939	2372955	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1240.846263";taxa="ERR5243693";snp_count="3";
+SEQUENCE	GUBBINS	CDS	1569763	1569784	0.000	.	0	node="Node_2->ERR5243693";neg_log_likelihood="1225.187276";taxa="ERR5243693";snp_count="4";
+SEQUENCE	GUBBINS	CDS	3058247	3059943	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1626.998533";taxa=" ERR5243695 ERR5243699";snp_count="51";
+SEQUENCE	GUBBINS	CDS	1031909	1032887	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1488.238586";taxa=" ERR5243695 ERR5243699";snp_count="25";
+SEQUENCE	GUBBINS	CDS	1907219	1933695	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1418.855520";taxa=" ERR5243695 ERR5243699";snp_count="10";
+SEQUENCE	GUBBINS	CDS	4480586	4494682	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1388.310552";taxa=" ERR5243695 ERR5243699";snp_count="14";
+SEQUENCE	GUBBINS	CDS	2372939	2372955	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1333.090356";taxa=" ERR5243695 ERR5243699";snp_count="3";
+SEQUENCE	GUBBINS	CDS	1569774	1569802	0.000	.	0	node="Node_2->Node_1";neg_log_likelihood="1321.321523";taxa=" ERR5243695 ERR5243699";snp_count="3";
+SEQUENCE	GUBBINS	CDS	3058274	3059927	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1635.795199";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="38";
+SEQUENCE	GUBBINS	CDS	1031882	1032884	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1496.653157";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="32";
+SEQUENCE	GUBBINS	CDS	4494628	4494679	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1412.011826";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="9";
+SEQUENCE	GUBBINS	CDS	4480586	4480617	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1383.310112";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="6";
+SEQUENCE	GUBBINS	CDS	1907269	1907359	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1367.107655";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="4";
+SEQUENCE	GUBBINS	CDS	1569774	1569802	0.000	.	0	node="Node_3->Node_2";neg_log_likelihood="1351.606455";taxa=" ERR5243693  ERR5243695 ERR5243699";snp_count="3";
