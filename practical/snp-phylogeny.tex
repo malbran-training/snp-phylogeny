@@ -392,7 +392,7 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
     \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
     \makeatother
     \newcommand{\prompt}[4]{
-        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+        {\ttfamily\llap{{\color{blue}\LARGE\faKeyboardO\hspace{3pt}#4}}\vspace{-\baselineskip}}
     }
 
 
@@ -534,7 +534,6 @@ gubbins & https://github.com/nickjcroucher/gubbins & 3.3.0 \\
 iqtree & http://www.iqtree.org/ & 2.2.3 \\
 FigTree & http://tree.bio.ed.ac.uk/software/figtree/ & 1.4.4 \\
 Microreact & https://microreact.org & 240 \\
-Phandango & https://jameshadfield.github.io/phandango/\#/ & 1.3.0 \\
 \bottomrule
 \end{longtable}
 
@@ -561,14 +560,14 @@ seaview\PY{+w}{ }\PY{p}{\PYZam{}}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-fastqc
+fastqc\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-fastp
+fastp\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -582,32 +581,33 @@ bwa
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-snp\PYZhy{}sites
+snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-gubbins
+run\PYZus{}gubbins.py\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-iqtree
+iqtree\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-FigTree
+figtree\PY{+w}{ }\PY{p}{\PYZam{}}
 \end{Verbatim}
 \end{tcolorbox}
 
-    This should return the help message for these tools.
+    This should return the help message for these tools or launch the GUI
+software in the background.
 
 To get started with the tutorial, go to the first section:
 \href{intro_to_phylogeny.ipynb}{Introduction to phylogeny}
@@ -1496,28 +1496,64 @@ head\PY{+w}{ }\PYZhy{}20\PY{+w}{ }ERR5243699.fastp.json
 \subsubsection{Map the data to a reference
 genome}\label{map-the-data-to-a-reference-genome}}
 
-    Use bwa to map the reads for sample ERR5243693 to the reference genome.
+    When performing any data analysis it is good practice to arrange your
+data in a logical way rather than putting all files in a single
+directory. Let's create a directory to store the results of mapping the
+reads to the reference genome:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PY{+w}{ }../samtools
+\PY{n+nb}{cd}\PY{+w}{ }../samtools
+\end{Verbatim}
+\end{tcolorbox}
+
+    Use \texttt{bwa} to map the reads for sample ERR5243693 to the reference
+genome.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 bwa\PY{+w}{ }mem\PY{+w}{ }\PYZhy{}t\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }../ref/Styphi\PYZus{}CT18.fa\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-ERR5243693\PYZus{}1.trim.fastq.gz\PY{+w}{ }ERR5243693\PYZus{}2.trim.fastq.gz\PY{+w}{ }\PYZgt{}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+../fastq/ERR5243693\PYZus{}1.trim.fastq.gz\PY{+w}{ }../fastq/ERR5243693\PYZus{}2.trim.fastq.gz\PY{+w}{ }\PYZgt{}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 ERR5243693.sam
 \end{Verbatim}
 \end{tcolorbox}
 
-    This may take a few minutes to run. When complete, convert the sam file
-to a bam file with samtools:
+    This may take a few minutes to run. Let's take a look at the options:
+
+\begin{itemize}
+\tightlist
+\item
+  -t : tells the program to use 2 CPUs
+\item
+  ../ref/Styphi\_CT18.fa is the reference to match the reads against
+\item
+  ../fastq/ERR5243693\_1.trim.fastq.gz and
+  ../fastq/ERR5243693\_2.trim.fastq.gz are the fastq files containing
+  our sequence reads (after trimming) for sample ERR5243693
+\item
+  the output is SAM format and \texttt{\textgreater{}\ ERR5243693.sam}
+  redirects the output to the file \texttt{ERR5243693.sam}
+\end{itemize}
+
+When complete, convert the sam file to a bam file with samtools:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-samtools\PY{+w}{ }view\PY{+w}{ }\PYZhy{}@\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }\PYZhy{}bhS\PY{+w}{ }\PYZhy{}o\PY{+w}{ }ERR5243693.bam\PY{+w}{ }ERR5243693.sam
+samtools\PY{+w}{ }view\PY{+w}{ }\PYZhy{}@\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }\PYZhy{}bh\PY{+w}{ }\PYZhy{}o\PY{+w}{ }ERR5243693.bam\PY{+w}{ }ERR5243693.sam
 \end{Verbatim}
 \end{tcolorbox}
 
-    Sort and index the sorted bam file:
+    The \texttt{-@} option tells the program to use 2 CPUs and the
+\texttt{-b} option specifies to write the output as a bam file,
+\texttt{-h} option means include the header information in the output.
+The \texttt{-o} option specifies the name of the output file
+\texttt{ERR5243693.bam}.
+
+Sort the bam file and then index the sorted bam file:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1564,12 +1600,23 @@ samtools\PY{+w}{ }coverage\PY{+w}{ }ERR5243693.sorted.bam\PY{+w}{ }\PYZgt{}\PY{+
 \subsubsection{Call variants}\label{call-variants}}
 
 Go through each position in the reference genome and look at reads
-aligned at that position and make a call about what the base is in the
-sample at that position. This information will be stored in the a VCF
-file and if there are any differences then this will be marked as a
-variant (snp/indel) in this VCF file.
+aligned at that position and make a call about what the base is at that
+position for the sample. This information will be stored in a VCF file
+and if there are any differences then this will be marked as a variant
+(snp/indel) in this VCF file.
 
-Do this for sample ERR5243693 using bcftools:
+Again create a directory to store the results of the variant calling
+step:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PY{+w}{ }../variants
+\PY{n+nb}{cd}\PY{+w}{ }../variants
+\end{Verbatim}
+\end{tcolorbox}
+
+    Run this for sample ERR5243693 using bcftools:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1578,14 +1625,58 @@ bcftools\PY{+w}{ }mpileup\PY{+w}{ }\PYZhy{}\PYZhy{}fasta\PYZhy{}ref\PY{+w}{ }../
 \PYZhy{}\PYZhy{}min\PYZhy{}BQ\PY{+w}{ }\PY{l+m}{20}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PYZhy{}\PYZhy{}annotate\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/DP,FORMAT/SP,INFO/AD,\PY{l+s+se}{\PYZbs{}}
-INFO/ADF,INFO/ADR\PY{+w}{ }ERR5243693.sorted.bam\PY{+w}{ }\PY{p}{|}\PY{+w}{ }bcftools\PY{+w}{ }call\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+INFO/ADF,INFO/ADR\PY{+w}{ }../samtools/ERR5243693.sorted.bam\PY{+w}{ }\PY{p}{|}\PY{+w}{ }bcftools\PY{+w}{ }call\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PYZhy{}\PYZhy{}output\PYZhy{}type\PY{+w}{ }v\PY{+w}{ }\PYZhy{}\PYZhy{}ploidy\PY{+w}{ }\PY{l+m}{1}\PY{+w}{ }\PYZhy{}\PYZhy{}multiallelic\PYZhy{}caller\PY{+w}{ }\PYZhy{}\PY{+w}{ }\PY{p}{|}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 bcftools\PY{+w}{ }view\PY{+w}{ }\PYZhy{}\PYZhy{}output\PYZhy{}file\PY{+w}{ }ERR5243693.vcf.gz\PY{+w}{ }\PYZhy{}\PYZhy{}output\PYZhy{}type\PY{+w}{ }z
 \end{Verbatim}
 \end{tcolorbox}
 
-    Again this may take some time to run. When it completes, index the VCF
-file:
+    Again this may take some time to run. Let's look at the options:
+
+The \texttt{bcftools\ mpileup} command is passed the following options:
+
+\begin{itemize}
+\tightlist
+\item
+  --fasta-ref ../ref/Styphi\_CT18.fa is the reference that the reads
+  were mapped to
+\item
+  --min-BQ 20
+\item
+  --annotate
+  FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/DP,FORMAT/SP,INFO/AD,INFO/ADF,INFO/ADR
+  tells the program what tags to incude in the VCF
+\end{itemize}
+
+The VCF produced by the bcftools mpileup command is passed to
+\texttt{bcftools\ call} with the following options:
+
+\begin{itemize}
+\tightlist
+\item
+  --output-type v telss the program to output VCF format
+\item
+  --ploidy 1 tells the program that we are daling with haploid datasets
+\item
+  --multiallelic-caller tells the program which variant calling
+  algorithm to use
+\end{itemize}
+
+The VCF produced by the \texttt{bcftools\ call} command is passed to
+\texttt{bcftools\ view} with the following options which converts the
+VCF to a compressed VCF file:
+
+\begin{itemize}
+\tightlist
+\item
+  --output-file ERR5243693.vcf.gz tells the program the name of the
+  output file
+\item
+  --output-type z tells the program to create a gzipped VCF file as
+  output
+\end{itemize}
+
+When it completes, index the gzipped VCF file that has been created:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1606,7 +1697,28 @@ bcftools\PY{+w}{ }view\PY{+w}{ }ERR5243693.vcf.gz\PY{+w}{ }\PY{p}{|}\PY{+w}{ }le
     Notice that the VCF has information about every site in the genome (not
 just variants).
 
-Now generate some statistics about the VCF file:
+\hypertarget{check-your-understanding}{%
+\paragraph{Check your understanding}\label{check-your-understanding}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For sample ERR5243693 what is the reference base at position?
+\item
+  For sample ERR5243693 what is the allele for the sample at position?
+  Is it the same or different that the reference?
+\item
+  For sample ERR5243693 what is the allele for the sample at position?
+  Is it the same or different that the reference?
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Now\PY{+w}{ }generate\PY{+w}{ }some\PY{+w}{ }statistics\PY{+w}{ }about\PY{+w}{ }the\PY{+w}{ }VCF\PY{+w}{ }file:
+\end{Verbatim}
+\end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1658,15 +1770,33 @@ Use bcftools to filter sites for sample ERR5243693.
 \begin{Verbatim}[commandchars=\\\{\}]
 bcftools\PY{+w}{ }filter\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PYZhy{}\PYZhy{}output\PY{+w}{ }ERR5243693.filtered.vcf.gz\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-\PYZhy{}\PYZhy{}soft\PYZhy{}filter\PY{+w}{ }LowQual\PY{+w}{ }\PYZhy{}\PYZhy{}exclude\PY{+w}{ }\PY{l+s+s2}{\PYZdq{}QUAL\PYZlt{}25 || FORMAT/DP\PYZlt{}10 \PYZbs{}}
-\PY{l+s+s2}{|| MAX(FORMAT/ADF)\PYZlt{}2 || MAX(FORMAT/ADR)\PYZlt{}2 || \PYZbs{}}
-\PY{l+s+s2}{MAX(FORMAT/AD)/SUM(FORMAT/DP)\PYZlt{}0.9 || MQ\PYZlt{}30 || MQ0F\PYZgt{}0.1\PYZdq{}}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PYZhy{}\PYZhy{}soft\PYZhy{}filter\PY{+w}{ }LowQual\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PYZhy{}\PYZhy{}exclude\PY{+w}{ }\PY{l+s+s2}{\PYZdq{}QUAL\PYZlt{}25 || FORMAT/DP\PYZlt{}10 || MAX(FORMAT/ADF)\PYZlt{}2 || MAX(FORMAT/ADR)\PYZlt{}2 \PYZbs{}}
+\PY{l+s+s2}{|| MAX(FORMAT/AD)/SUM(FORMAT/DP)\PYZlt{}0.9 || MQ\PYZlt{}30 || MQ0F\PYZgt{}0.1\PYZdq{}}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PYZhy{}\PYZhy{}output\PYZhy{}type\PY{+w}{ }z\PY{+w}{ }ERR5243693.vcf.gz
 \end{Verbatim}
 \end{tcolorbox}
 
-    The filtering step may take some time ti run. When complete, index the
-filtered VCF file:
+    The filtering step may take some time to run. Let's look at the options
+used in the command above:
+
+\begin{itemize}
+\tightlist
+\item
+  --output specifies the name of the output file
+\item
+  --soft-filter tells the program to keep any filtered position in the
+  file and mark them as \texttt{LowQual} rather than remove them
+  completely from the file (hard filter)
+\item
+  --exclude lists the filtering criteria to apply to each position
+\item
+  --output-type specifies the type of output file to create, in this
+  case z means a xompressed VCF file
+\end{itemize}
+
+When the bcftools filter command is complete, index the filtered VCF
+file:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1685,7 +1815,14 @@ bcftools\PY{+w}{ }view\PY{+w}{ }ERR5243693.filtered.vcf.gz\PY{+w}{ }\PY{p}{|}\PY
 \end{Verbatim}
 \end{tcolorbox}
 
-    Ciew only the sites that passed the filtering step:
+    \hypertarget{check-your-understanding}{%
+\paragraph{Check your understanding}\label{check-your-understanding}}
+
+Looking at the filtered VCF for sample ERR5243693: 1. Does position X
+pass or fail? 2. Does position X pass or fail? 3. What is the reason for
+the failure at position X?
+
+    To view only the sites that passed the filtering step:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1694,7 +1831,7 @@ bcftools\PY{+w}{ }view\PY{+w}{ }\PYZhy{}f\PY{+w}{ }PASS\PY{+w}{ }ERR5243693.filt
 \end{Verbatim}
 \end{tcolorbox}
 
-    Generate some statistics about the filtered VCF file:
+    To generate some statistics about the filtered VCF file:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1737,14 +1874,27 @@ reference.
 
 To create a pseudogenome for sample ERR5243693 use the script
 \textit{vcf2pseudogenome.pl}. This has already been installed on the
-computer using this command:
+computer using this command (it also has a dependency on \textit{pysam}
+and \textit{biopython}):
 
 \texttt{wget\ https://raw.githubusercontent.com/nf-core/bactmap/master/bin/vcf2pseudogenome.py}
+
+Create a directory to store the pseudogenomes:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-vcf2pseudogenome.py\PY{+w}{ }\PYZhy{}r\PY{+w}{ }../ref/Styphi\PYZus{}CT18.fa\PY{+w}{ }\PYZhy{}b\PY{+w}{ }ERR5243693.filtered.vcf.gz\PY{+w}{ }\PYZhy{}o\PY{+w}{ }ERR5243693.fas
+mkdir\PY{+w}{ }../pseudogenomes
+\PY{n+nb}{cd}\PY{+w}{ }../pseudogenomes
+\end{Verbatim}
+\end{tcolorbox}
+
+    The run the \texttt{vcf2pseudogenome.py} script:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+vcf2pseudogenome.py\PY{+w}{ }\PYZhy{}r\PY{+w}{ }../ref/Styphi\PYZus{}CT18.fa\PY{+w}{ }\PYZhy{}b\PY{+w}{ }../variants/ERR5243693.filtered.vcf.gz\PY{+w}{ }\PYZhy{}o\PY{+w}{ }ERR5243693.fas
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1766,8 +1916,9 @@ vcf2pseudogenome.py\PY{+w}{ }\PYZhy{}r\PY{+w}{ }../ref/Styphi\PYZus{}CT18.fa\PY{
 \subsubsection{Create a multiple sequence alignment of all
 pseudogenomes}\label{create-a-multiple-sequence-alignment-of-all-pseudogenomes}}
 
-Remember to reconstruct the phylogeny of samples we need a multi fasta
-alignment of our sequences.
+Remember to reconstruct the phylogeny of our samples we need a
+multi-fasta alignment of our sequences. We are going to use a
+reconstruction of the entire genome as our set of sequences.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1777,8 +1928,8 @@ cat\PY{+w}{ }*.fas\PY{+w}{ }\PYZgt{}\PY{+w}{ }aligned\PYZus{}pseudogenomes.aln
 \end{tcolorbox}
 
     Because of the way the pseudogenomes were constructed resulting in them
-being the same length we do not have to perform a mult sequence
-alignment.
+all being the same length we do not have to perform a multi-sequence
+alignment to ensure all the bases are homologous.
 
     \hypertarget{check-your-understanding}{%
 \paragraph{Check your understanding}\label{check-your-understanding}}
@@ -1798,9 +1949,9 @@ alignment.
 \subsubsection{Add the reference genome to the multiple sequence
 alignment}\label{add-the-reference-genome-to-the-multiple-sequence-alignment}}
 
-Sometimes you may also want to include the reference genome used in the
-mapping step in your tree. To do this add the reference sequence to the
-multifasta alignment of your samples.
+Sometimes you may want to include the reference genome in your tree. To
+do this, add the reference sequence to the multifasta alignment of your
+samples.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1815,7 +1966,7 @@ sequence alignment viewer e.g.~seaview.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-seaview\PY{+w}{ }\PY{p}{\PYZam{}}
+seaview\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln\PY{+w}{ }\PY{p}{\PYZam{}}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1826,8 +1977,8 @@ seaview\PY{+w}{ }\PY{p}{\PYZam{}}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  How many sequences in the multiple sequence alignment file of
-  reference and pseudogenomes?
+  How many sequences in the multiple sequence alignment file containng
+  the reference genome and sample pseudogenomes?
 \end{enumerate}
 
     \hypertarget{mask-repetitive-regions-optional-but-good-practice}{%
@@ -1835,27 +1986,39 @@ seaview\PY{+w}{ }\PY{p}{\PYZam{}}
 practice)}\label{mask-repetitive-regions-optional-but-good-practice}}
 
 Bases called in repetitive regions may not be true variation (e.g.~due
-to misalignment of reads) and may affect/compromise the core
-phylogenetic signal. Therefore it is good practice to identify known
-repetitive regions and mask these out from your alignment.
+to misalignment of reads) and may compromise the core phylogenetic
+signal. Therefore it is good practice to identify known repetitive
+regions and mask these out from your alignment.
 
 To achieve this, either a file of known regions for the reference you
-aligned to will exist (see the literature) or one can be generated by
+mapped to will exist (see the literature) or one can be generated by
 matching the reference genome against itself (to identify repeat
-regions) with e.g.~Mummer and Phast to identify prophage. We won't cover
-this here.
+regions) with e.g.~Mummer and Phast used to identify prophage. You can
+use the software remove\_blocks to mask out any repetitive region in
+your multifasta alignment, this masking involves replacing the bases
+with Ns in this region. To save time we wont run this step here.
 
     \hypertarget{draw-a-tree-with-iqtree}{%
-\subsection{Draw a tree with iqtree}\label{draw-a-tree-with-iqtree}}
+\subsubsection{Draw a tree with iqtree}\label{draw-a-tree-with-iqtree}}
 
 Now that we have a multiple sequence alignment, we can use IQ-TREE to
-build a maximum likelihood phylogeny.
+build a maximum likelihood phylogeny. But first create a directory to
+store the iqtree analysis.
 
-Calculating a phylogeny on whole genome sequences can be very time
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PY{+w}{ }../iqtree
+\PY{n+nb}{cd}\PY{+w}{ }../iqtree
+\end{Verbatim}
+\end{tcolorbox}
+
+    Calculating a phylogeny on whole genome sequences can be very time
 consuming. We can speed this up by only using the variable sites (SNPs).
-However, we need to be aware that only including variable sites can
-affect the evolutionary rate estimates made by phylogenetics software -
-therefore, we need to account for the sites we remove in our analysis.
+These are sites that differ in at least one of the samples. However, we
+need to be aware that only including variable sites can affect the
+evolutionary rate estimates made by phylogenetics software - therefore,
+we need to account for the sites we remove in our analysis.
 
 We will use snp-sites to do this. You can view the options for
 snp-sites:
@@ -1873,12 +2036,21 @@ sequence alignment:
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}o\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.snps.aln\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln
+snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}o\PY{+w}{ }pseudogenomes.snps.aln\PY{+w}{ }../pseudogenomes/ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln
 \end{Verbatim}
 \end{tcolorbox}
 
-    We can see how many invariant sites were removed (and what proportion of
-A, T, G, C they were) using
+    Look at the new file that is created:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+less\PY{+w}{ }pseudogenomes.snps.aln
+\end{Verbatim}
+\end{tcolorbox}
+
+    We can also see how many invariant sites were removed (and what
+proportion of A, T, G, C they were) using
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1887,7 +2059,21 @@ snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}C\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus
 \end{Verbatim}
 \end{tcolorbox}
 
-    We can look at the options for IQ-TREE below
+    \hypertarget{check-your-understanding}{%
+\paragraph{Check your understanding}\label{check-your-understanding}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many variant sites are identified?
+\item
+  How many invariant sites are identified?
+\item
+  Does this correlate with the expected number i.e.~from the literature?
+\end{enumerate}
+
+Now look at the options for IQ-TREE:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1896,38 +2082,54 @@ iqtree\PY{+w}{ }\PYZhy{}h
 \end{Verbatim}
 \end{tcolorbox}
 
-    Draw the tree with IQ\_TREE:
+    And then construct the tree with IQ-TREE:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 iqtree\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-\PY{+w}{    }\PYZhy{}fconst\PY{+w}{ }\PY{k}{\PYZdl{}(}\PY{+w}{ }snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}C\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln\PY{+w}{ }\PY{k}{)}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-\PY{+w}{    }\PYZhy{}alrt\PY{+w}{ }\PY{l+m}{1000}\PY{+w}{ }\PYZhy{}B\PY{+w}{ }\PY{l+m}{1000}\PY{+w}{ }\PYZhy{}m\PY{+w}{ }MFP\PY{+w}{ }\PYZhy{}czb\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PY{+w}{    }\PYZhy{}s\PY{+w}{ }pseudogenomes.snpsites.aln\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-\PY{+w}{    }\PYZhy{}nt\PY{+w}{ }AUTO\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
-\PY{+w}{    }\PYZhy{}ntmax\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PY{+w}{    }\PYZhy{}fconst\PY{+w}{ }\PY{k}{\PYZdl{}(}\PY{+w}{ }snp\PYZhy{}sites\PY{+w}{ }\PYZhy{}C\PY{+w}{ }ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln\PY{+w}{ }\PY{k}{)}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PY{+w}{    }\PYZhy{}m\PY{+w}{ }GTR+G+T\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PY{+w}{    }\PYZhy{}B\PY{+w}{ }\PY{l+m}{1000}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
+\PY{+w}{    }\PYZhy{}T\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }\PY{l+s+se}{\PYZbs{}}
 \PY{+w}{    }\PYZhy{}mem\PY{+w}{ }2GB
 \end{Verbatim}
 \end{tcolorbox}
 
-    In the command below, we:
+    In the command above, we have used te following options
 
-specify the multiple sequence alignment using -s clean.full.SNPs.aln ask
-IQ-TREE to take account of missing invariant sites using -fconst
-\$(snp-sites -C clean.full.aln) specify an evolutionary model we want
-IQ-TREE to use -m GTR+F+I tell IQ-TREE to use a maximum of 2 CPUs
-(threads) and 2GB memory -T 2 -mem 2G perform 1000 ultrafast bootstraps
--B 1000 use sample M66 as an outgroup -o M66
+\begin{itemize}
+\item
+  -s to specify the multiple sequence alignment file
+  \texttt{pseudogenomes.snpsites.aln}
+\item
+  \begin{itemize}
+  \tightlist
+  \item
+    fconst to ask IQ-TREE to take account of missing invariant sites
+    \$(snp-sites -C ref\_and\_aligned\_pseudogenomes.aln calculates the
+    specific values to pass to iqtree)
+  \end{itemize}
+\item
+  -m to specify an evolutionary model, we want IQ-TREE to use -m GTR
+\item
+  -B to perform 1000 ultrafast bootstraps
+\item
+  -T to tell IQ-TREE to use a maximum of 2 CPUs (threads)
+\item
+  -mem 2GB to tell IQ-TREE to use a maximum of of 2GB memory
+\end{itemize}
 
-    Our maximum likelihood tree is labelled XXX.treefile. The treefile
-suffix is not always correctly identified by many tools, so we'll
-relabel this as something else:
+    Our maximum likelihood tree is labelled
+\texttt{pseudogenomes.snpsites.aln.treefile}. The treefile suffix is not
+always correctly identified by many tools, so we'll relabel this as
+something else:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-cp\PY{+w}{ }clean.full.SNPs.aln.treefile\PY{+w}{ }clean.full.SNPs.aln.tre
+cp\PY{+w}{ }pseudogenomes.snpsites.aln.treefile\PY{+w}{ }pseudogenomes.snpsites.aln.tre
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1936,16 +2138,103 @@ cp\PY{+w}{ }clean.full.SNPs.aln.treefile\PY{+w}{ }clean.full.SNPs.aln.tre
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-cat\PY{+w}{ }clean.full.SNPs.aln.tre
+cat\PY{+w}{ }pseudogenomes.snpsites.aln.tre
 \end{Verbatim}
 \end{tcolorbox}
 
-    But it is better if we visualise this using figtree
+    But it is better if we visualise this using a tree view e.g.figtree
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-figtree\PY{+w}{ }clean.full.SNPs.aln.tre\PY{+w}{ }\PY{p}{\PYZam{}}
+figtree\PY{+w}{ }pseudogenomes.snpsites.aln.tre\PY{+w}{ }\PY{p}{\PYZam{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{accounting-for-recombination-with-gubbins}{%
+\subsubsection{Accounting for recombination with
+Gubbins}\label{accounting-for-recombination-with-gubbins}}
+
+Variation due to recombination events can mask the core phylogenetic
+signal, therefore it is recommended to identify these regions in your
+alignment and mask them out. We can use gubbins to infer recombining
+sites by looking for increased SNP density that occurs in specific
+ancestral nodes. Look at the options for gubbins:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+run\PYZus{}gubbins.py\PY{+w}{ }\PYZhy{}h
+\end{Verbatim}
+\end{tcolorbox}
+
+    Make a directory to store the results of running gubbins:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PY{+w}{ }../gubbins
+\PY{n+nb}{cd}\PY{+w}{ }../gubbins
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Run\PY{+w}{ }gubbins\PY{+w}{ }on\PY{+w}{ }your\PY{+w}{ }data:
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+run\PYZus{}gubbins.py\PY{+w}{ }\PYZhy{}c\PY{+w}{ }\PY{l+m}{2}\PY{+w}{ }\PYZhy{}p\PY{+w}{ }gubbins\PY{+w}{ }../pseudogenomes/ref\PYZus{}and\PYZus{}aligned\PYZus{}pseudogenomes.aln
+\end{Verbatim}
+\end{tcolorbox}
+
+    The \texttt{-c} option tells the program to use 2 CPUs and the
+\texttt{-p} option tells the program to name all files with the prefix
+gubbins. This command can take a few minutes to run.
+
+\textbf{Note:} Gubbins must be run on the entire alignment (not just
+SNPs) as it uses the spatial distribution to identify and filter out
+recombinant regions.
+
+NB. If gubbins takes more than 10 mins to complete, we have already run
+it for you - the files are available at:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+ls\PY{+w}{ }\PYZhy{}l\PY{+w}{ }\PYZti{}/course\PYZus{}data/snp\PYZhy{}phylogeny/data/gubbins\PYZus{}backup
+\end{Verbatim}
+\end{tcolorbox}
+
+    Lets look at what gubbins has done:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+ls\PY{+w}{ }\PYZhy{}l\PY{+w}{ }*
+\end{Verbatim}
+\end{tcolorbox}
+
+    You can explore these files. For example
+\texttt{gubbins.recombination\_predictions.gff} is a gff file that
+contains a record of each recombination block identified, how many SNPs
+it contains, and what samples are affected.
+
+head gubbins.recombination\_predictions.gff
+
+The file \texttt{gubbins.final\_tree.tre} is a phylogeny in which
+recombination has already been accounted for.
+
+You can visualise this in figtree.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+figtree\PY{+w}{ }gubbins.final\PYZus{}tree.tre
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1965,7 +2254,7 @@ that uses the ete package. You can examine the code:
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-less\PY{+w}{ }midpoint.root.py
+less\PY{+w}{ }../midpoint.root.py
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1993,21 +2282,18 @@ distantly related to our sequences of interest than they are to one
 another. These sequence are usually referred to as \textit{outgroups}. The
 root estimate is then simply the point at which the outgroup(s) join the
 tree. The best possible outgroups are those available which are most
-closely related to our sequences of interest but different enough to
-\ldots. Examples\ldots.
+closely related to our sequences of interest but still different enough.
+For examples, in this dataset we could use a \textit{Salmonella paratyhi A
+sample} as an outgroup.
 
-    Side Note: Often you may want to incorporate a `finished reference
-genome' into your tree e.g.~to use as an outgroup. (Explain what an
-outgroup is and why you may want to use it) or to see how your
-samples/isolates relate to them. If there is no sequence data available
-for the isolate e.g.~there is only a complete reference genome then one
-approach you can take is to shred the reference genome (fasta file) and
-make simulated reads (remember it is a haploid genome) and treat the
-simulated data as another sample and process it like the other samples.
-You will then have a `pseudogenome' of the sample that will be included
-in the ref\_and\_aligned\_pseudogenomes.fas file at this stage. The
-practical aspect of this is beyond the scope of this tutorial. The
-article below lists some popular tools for simulating reads:
+    There are a few ways to do this. One is to obtain sequence data for the
+outgroup sample and incorporate it into the dataset from the beginning
+of the analysis and construct a pseudogenome for the outgroup. If no
+sequence data is available, you can take a complete reference genome for
+the outgroup and \texttt{shred} it to similate sequencing reads for the
+reference. Just remember when calculating and reporting the number of
+variant sites for your dataset that you remove the outgroup from the
+alignment.
 
     \hypertarget{clean-up}{%
 \subsubsection{Clean-up!}\label{clean-up}}
@@ -2015,21 +2301,29 @@ article below lists some popular tools for simulating reads:
 Clean up any intermediate files that were generated during the analysis
 that you no longer require. This is always an important last step of any
 analysis as sequence data analysis files can use up large amounts of
-disk space.
+disk space. Let's look at what files were created in our analysis
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-rm\PY{+w}{ }*.trim.fastq.gz
-rm\PY{+w}{ }*.sub.fastq.gz
-Rm\PY{+w}{ }*.html
-rm\PY{+w}{ }*.sam
-rm\PY{+w}{ }ERR5243693.bam*
-rm\PY{+w}{ }ERR5243695.bam*
-rm\PY{+w}{ }ERR5243699.bam*
-rm\PY{+w}{ }ERR5243693.vcf.gz*
-rm\PY{+w}{ }ERR5243695.vcf.gz*
-rm\PY{+w}{ }ERR5243699.vcf.gz*
+\PY{n+nb}{cd}\PY{+w}{ }..
+ls\PY{+w}{ }\PYZhy{}alhrt\PY{+w}{ }*/*
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now let's remove any files that do not need to be kept long term:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+rm\PY{+w}{ }fastq/*.trim.fastq.gz
+rm\PY{+w}{ }samtools/*.sam
+rm\PY{+w}{ }samtool/ERR5243693.bam*
+rm\PY{+w}{ }samtools/ERR5243695.bam*
+rm\PY{+w}{ }samtools/ERR5243699.bam*
+rm\PY{+w}{ }variants/ERR5243693.vcf.gz*
+rm\PY{+w}{ }variant/ERR5243695.vcf.gz*
+rm\PY{+w}{ }variants/ERR5243699.vcf.gz*
 \end{Verbatim}
 \end{tcolorbox}
 
